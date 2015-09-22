@@ -1,3 +1,6 @@
 *.classpath
 /hibernate/hibernate/*.project
 .settings
+.idea
+*.iml
+*.class
