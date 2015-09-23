@@ -1,4 +1,4 @@
-package com.mtsmda.java8.defaultMethodInTheInterface;
+package com.mtsmda.java8.defaultAndStaticMethodInTheInterface;
 
 public class Run {
 	
