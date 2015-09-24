@@ -5,4 +5,8 @@ public interface FunctionalInterfaceI<F, T> {
 	
 	T convert(F from);
 	
+	/*void method();*/
+	
+	
+	
 }
