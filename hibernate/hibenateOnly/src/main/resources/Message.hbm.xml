@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.mtsmda.hibenateOnly.hibenateOnly.model.Message"
+		table="MESSAGE" lazy="false">
+		<id name="id">
+			<column name="MESSAGE_ID" sql-type="int" not-null="true" />
+			<generator class="identity" />
+		</id>
+		<property name="messageText">
+			<column name="MESSAGE_TEXT" sql-type="varchar(255)" not-null="true" />
+		</property>
+		<property name="localDate">
+			<column name="MESSAGE_DATE" sql-type="datetime" />
+		</property>
+	</class>
+</hibernate-mapping>

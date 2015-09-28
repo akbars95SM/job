@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- MySQL Configuration -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/SampleDB</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.generate_statistics">true</property>
+
+		<!-- <mapping resource="Book.hbm.xml" /> <mapping resource="Publisher.hbm.xml" 
+			/> -->
+		<mapping class="com.mtsmda.hibenateOnly.hibenateOnly.model.FootballClub" />
+		<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.CompositeKeyWithinEntity" />
+		<mapping class="com.mtsmda.hibenateOnly.hibenateOnly.model.multiID.Employee" />
+		<!-- <mapping class="com.mtsmda.hibenateOnly.hibenateOnly.model.CarSequenceGeneration" 
+			/> -->
+	<!-- <mapping class="com.mtsmda.hibenateOnly.hibenateOnly.model.compositeID.ISBN" 
+		/> <mapping class="com.mtsmda.hibenateOnly.hibenateOnly.model.compositeID.Book" 
+		/> -->
+
+	</session-factory>
+</hibernate-configuration>
