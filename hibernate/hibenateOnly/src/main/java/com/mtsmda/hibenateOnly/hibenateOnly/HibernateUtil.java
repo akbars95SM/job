@@ -38,12 +38,12 @@ public class HibernateUtil {
 		Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
 		configuration.addResource("Message.hbm.xml");
 		configuration.addResource("CompositeKeyWithinEntityXML.hbm.xml");
-		
+		configuration.addResource("Order.hbm.xml").addResource("Customer.hbm.xml").addResource("OrderMap.hbm.xml");
+
 		/*
-		 * not working
-		configuration.addResource("EmployeeXML.hbm.xml");
-		*/
-		
+		 * not working configuration.addResource("EmployeeXML.hbm.xml");
+		 */
+
 		/*
 		 * configuration.addProperties(properties);
 		 * configuration.addClass(com.mtsmda.hibenateOnly.hibenateOnly.model.

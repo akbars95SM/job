@@ -23,9 +23,11 @@
 		<mapping class="com.mtsmda.hibenateOnly.hibenateOnly.model.multiID.Employee" />
 		<!-- <mapping class="com.mtsmda.hibenateOnly.hibenateOnly.model.CarSequenceGeneration" 
 			/> -->
-	<!-- <mapping class="com.mtsmda.hibenateOnly.hibenateOnly.model.compositeID.ISBN" 
-		/> <mapping class="com.mtsmda.hibenateOnly.hibenateOnly.model.compositeID.Book" 
-		/> -->
+		<!-- <mapping class="com.mtsmda.hibenateOnly.hibenateOnly.model.compositeID.ISBN" 
+			/> <mapping class="com.mtsmda.hibenateOnly.hibenateOnly.model.compositeID.Book" 
+			/> -->
+		<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.mappingCollectionComponents.Customer" />
 
 	</session-factory>
 </hibernate-configuration>

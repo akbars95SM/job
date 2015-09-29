@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,8 +17,17 @@ import com.mtsmda.hibenateOnly.hibenateOnly.model.FootballClub;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.Message;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.compositeID.Book;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.compositeID.ISBN;
+import com.mtsmda.hibenateOnly.hibenateOnly.model.keysMap.OrderMap;
+import com.mtsmda.hibenateOnly.hibenateOnly.model.keysMap.Period;
+import com.mtsmda.hibenateOnly.hibenateOnly.model.mappingCollectionComponents.Address;
+import com.mtsmda.hibenateOnly.hibenateOnly.model.mappingCollectionComponents.Customer;
+import com.mtsmda.hibenateOnly.hibenateOnly.model.mappingCollectionComponentsXML.AddressXML;
+import com.mtsmda.hibenateOnly.hibenateOnly.model.mappingCollectionComponentsXML.CustomerXML;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.multiID.Employee;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.multiID.EmployeeXML;
+import com.mtsmda.hibenateOnly.hibenateOnly.model.nestedComponents.Contract;
+import com.mtsmda.hibenateOnly.hibenateOnly.model.nestedComponents.Order;
+import com.mtsmda.hibenateOnly.hibenateOnly.model.nestedComponents.Phone;
 
 public class Run {
 
@@ -78,19 +89,21 @@ public class Run {
 
 			session.beginTransaction();
 
-			session.save(footballClubBarcelona);
-			session.save(footballClubRealMadrid);
-
-			session.save(message);
-
-			session.save(compositeKeyWithinEntity);
-			session.save(compositeKeyWithinEntityXML);
-
-			session.save(employee);
+			/*
+			 * session.save(footballClubBarcelona);
+			 * session.save(footballClubRealMadrid);
+			 * 
+			 * session.save(message);
+			 * 
+			 * session.save(compositeKeyWithinEntity);
+			 * session.save(compositeKeyWithinEntityXML);
+			 * 
+			 * session.save(employee);
+			 */
 
 			/* session.save(employeeXML); */
 
-			/*session.save(book);*/
+			/* session.save(book); */
 
 			/*
 			 * org.hibernate.MappingException:
@@ -99,6 +112,93 @@ public class Run {
 			 * session.save(carSequenceGeneration1);
 			 */
 
+			/* nested components */
+			Phone phoneOrange = new Phone();
+			phoneOrange.setExchange(0);
+			phoneOrange.setAreaCode(69);
+			phoneOrange.setAreaCode(123456);
+
+			Phone phoneMoldcell = new Phone();
+			phoneMoldcell.setExchange(0);
+			phoneMoldcell.setAreaCode(79);
+			phoneMoldcell.setAreaCode(654132);
+
+			Contract contractWeekday = new Contract();
+			contractWeekday.setAddress("address");
+			contractWeekday.setName("name");
+			contractWeekday.setPhone(phoneMoldcell);
+
+			Contract contractHoliday = new Contract();
+			contractHoliday.setAddress("addressHoliday");
+			contractHoliday.setName("nameHoliday");
+			contractHoliday.setPhone(phoneOrange);
+
+			Order order = new Order();
+			order.setHolidayContract(contractHoliday);
+			order.setWeekdayContract(contractWeekday);
+
+			session.save(order);
+
+			/* reference components */
+
+			/* mapping collection components */
+			Customer customer = new Customer();
+			customer.setName("Ivanov");
+
+			Address address1 = new Address();
+			address1.setAddress("address");
+			address1.setCity("city");
+			address1.setState("state");
+			address1.setZip("zip");
+			address1.setCustomer(customer);
+
+			Address address2 = new Address();
+			address2.setAddress("address12");
+			address2.setCity("city12");
+			address2.setState("state12");
+			address2.setZip("zip12");
+			address2.setCustomer(customer);
+
+			customer.getContacts().add(address1);
+			customer.getContacts().add(address2);
+
+			session.save(customer);
+
+			/* xml */
+			CustomerXML customerXML = new CustomerXML();
+			customerXML.setName("Ivanov");
+
+			AddressXML address = new AddressXML();
+			address.setAddress("address");
+			address.setCity("city");
+			address.setState("state");
+			address.setZip("zip");
+			address.setCustomer(customerXML);
+
+			customerXML.getContacts().add(address);
+
+			session.save(customerXML);
+
+			/* keys Map */
+
+			OrderMap orderMap = new OrderMap();
+			orderMap.setName("First");
+
+			com.mtsmda.hibenateOnly.hibenateOnly.model.keysMap.Contract contract = new com.mtsmda.hibenateOnly.hibenateOnly.model.keysMap.Contract();
+			contract.setAddress("address");
+			contract.setName("name");
+
+			Period period = new Period();
+			period.setStartDate(new Date(new java.util.Date().getTime()));
+			period.setEndDate(new Date(new java.util.Date().getTime()));
+
+			Map<Period, com.mtsmda.hibenateOnly.hibenateOnly.model.keysMap.Contract> map = new HashMap<>();
+			map.put(period, contract);
+			
+			orderMap.setMap(map);
+			
+			session.save(orderMap);
+			
 			session.getTransaction().commit();
 
 			// System.out.println(session.isConnected());

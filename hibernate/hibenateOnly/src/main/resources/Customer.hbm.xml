@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping
+	package="com.mtsmda.hibenateOnly.hibenateOnly.model.mappingCollectionComponentsXML">
+	<class name="CustomerXML" table="Customer_XML">
+		<id name="id" type="int" column="customer_XML_ID">
+			<generator class="increment" />
+		</id>
+
+		<property name="name" column="Customer_name" />
+
+		<set name="contacts" table="AddressXML">
+			<key column="customer_id" />
+			<composite-element class="AddressXML">
+				<property name="address" type="string" column="addressXML" />
+				<property name="city" type="string" column="cityXML" />
+				<property name="state" type="string" column="stateXML" />
+				<property name="zip" type="string" column="zipXML" />
+			</composite-element>
+		</set>
+
+	</class>
+</hibernate-mapping>

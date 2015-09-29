@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mtsmda.hibenateOnly.hibenateOnly.model.keysMap">
+	<class name="OrderMap" table="ORDER_MAP">
+		<id name="id" type="long" column="ORDER_MAP_ID">
+			<generator class="native" />
+		</id>
+
+		<property name="name" type="string" column="ORDER_MAP_name" />
+
+		<map name="map" table="Order_Period">
+			<key column="Period_id" />
+			<composite-map-key class="Period">
+				<key-property name="startDate" type="date" column="start_date" />
+				<key-property name="endDate" type="date" column="end_date" />
+			</composite-map-key>
+			<composite-element class="Contract">
+				<property name="name" column="Contact_name"></property>
+				<property name="address" column="Contact_address"></property>
+			</composite-element>
+		</map>
+
+	</class>
+</hibernate-mapping>
