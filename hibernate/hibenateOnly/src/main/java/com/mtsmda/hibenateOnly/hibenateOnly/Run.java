@@ -3,6 +3,7 @@ package com.mtsmda.hibenateOnly.hibenateOnly;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +18,7 @@ import com.mtsmda.hibenateOnly.hibenateOnly.model.FootballClub;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.Message;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.compositeID.Book;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.compositeID.ISBN;
+import com.mtsmda.hibenateOnly.hibenateOnly.model.javaBrains.UserDetails;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.keysMap.OrderMap;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.keysMap.Period;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.mappingCollectionComponents.Address;
@@ -28,6 +30,8 @@ import com.mtsmda.hibenateOnly.hibenateOnly.model.multiID.EmployeeXML;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.nestedComponents.Contract;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.nestedComponents.Order;
 import com.mtsmda.hibenateOnly.hibenateOnly.model.nestedComponents.Phone;
+
+import antlr.collections.List;
 
 public class Run {
 
@@ -194,16 +198,55 @@ public class Run {
 
 			Map<Period, com.mtsmda.hibenateOnly.hibenateOnly.model.keysMap.Contract> map = new HashMap<>();
 			map.put(period, contract);
-			
+
 			orderMap.setMap(map);
-			
+
 			session.save(orderMap);
-			
+
+			/* java brains */
+			UserDetails userDetails = new UserDetails();
+			userDetails.setUserName("Ivanov");
+			userDetails.setJoinedDate(new java.util.Date());
+			userDetails.setJoinedDateTime(new java.util.Date());
+			userDetails.setJoinedTime(new java.util.Date());
+			userDetails.setDescription("ewrfwfwgerg 34tifg 90greg ");
+
+			com.mtsmda.hibenateOnly.hibenateOnly.model.javaBrains.Address addressJB = new com.mtsmda.hibenateOnly.hibenateOnly.model.javaBrains.Address();
+			addressJB.setCity("Kishinev");
+			addressJB.setPincode("2935");
+			addressJB.setState("Kishinev");
+			addressJB.setStreet("Pushkin");
+
+			com.mtsmda.hibenateOnly.hibenateOnly.model.javaBrains.Address addressJBHome = new com.mtsmda.hibenateOnly.hibenateOnly.model.javaBrains.Address();
+			addressJBHome.setCity("Kishinev");
+			addressJBHome.setPincode("3529");
+			addressJBHome.setState("Kishinev");
+			addressJBHome.setStreet("Stefan cel Mare");
+
+			userDetails.setAddress(addressJB);
+			userDetails.setHomeAddress(addressJBHome);
+
+			session.save(userDetails);
+
 			session.getTransaction().commit();
 
 			// System.out.println(session.isConnected());
 			session.close();
 			// System.out.println(session.isConnected());
+
+			System.out.println();
+
+			Session openSession = sessionFactory.openSession();
+			openSession.beginTransaction();
+
+			Object object = openSession.get(UserDetails.class, 1);
+			System.out.println(object);
+			System.out.println(object.getClass().getCanonicalName());
+			System.out.println(object.getClass().isAssignableFrom(UserDetails.class));
+			System.out.println(object.getClass().isAssignableFrom(Contract.class));
+
+			openSession.close();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
