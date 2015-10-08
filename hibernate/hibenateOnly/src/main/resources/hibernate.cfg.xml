@@ -31,5 +31,35 @@
 		<mapping
 			class="com.mtsmda.hibenateOnly.hibenateOnly.model.javaBrains.UserDetails" />
 
+		<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.inheritanceAndCustomMapping.tablePerClassHirerchy.Disc" />
+		<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.inheritanceAndCustomMapping.tablePerClassHirerchy.AudioDisc" />
+		<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.inheritanceAndCustomMapping.tablePerClassHirerchy.VideoDisc" />
+
+<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.inheritanceAndCustomMapping.tablePerSubclass.Disc2" />
+		<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.inheritanceAndCustomMapping.tablePerSubclass.AudioDisc2" />
+		<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.inheritanceAndCustomMapping.tablePerSubclass.VideoDisc2" />
+
+
+		<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.inheritanceAndCustomMapping.tablePerConcreteClass.Disc3" />
+<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.inheritanceAndCustomMapping.tablePerConcreteClass.AudioDisc3" />
+			<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.inheritanceAndCustomMapping.tablePerConcreteClass.VideoDisc3" />
+			
+			
+			<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.inheritanceAndCustomMapping.tablePerClassWithMappedSurepclass.Disc4" />
+			<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.inheritanceAndCustomMapping.tablePerClassWithMappedSurepclass.AudioDisc4" />
+			<mapping
+			class="com.mtsmda.hibenateOnly.hibenateOnly.model.inheritanceAndCustomMapping.tablePerClassWithMappedSurepclass.VideoDisc4" />
+
 	</session-factory>
 </hibernate-configuration>

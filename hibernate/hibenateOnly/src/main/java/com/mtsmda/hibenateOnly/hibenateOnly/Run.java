@@ -226,6 +226,17 @@ public class Run {
 			userDetails.setAddress(addressJB);
 			userDetails.setHomeAddress(addressJBHome);
 
+			/*com.mtsmda.hibenateOnly.hibenateOnly.model.javaBrains.Phone phone1 = new com.mtsmda.hibenateOnly.hibenateOnly.model.javaBrains.Phone(
+					"069325985");
+			com.mtsmda.hibenateOnly.hibenateOnly.model.javaBrains.Phone phone2 = new com.mtsmda.hibenateOnly.hibenateOnly.model.javaBrains.Phone(
+					"079325985");
+			com.mtsmda.hibenateOnly.hibenateOnly.model.javaBrains.Phone phone3 = new com.mtsmda.hibenateOnly.hibenateOnly.model.javaBrains.Phone(
+					"061325985");
+
+			userDetails.getPhoneSet().add(phone1);
+			userDetails.getPhoneSet().add(phone2);
+			userDetails.getPhoneSet().add(phone3);
+*/
 			session.save(userDetails);
 
 			session.getTransaction().commit();
